@@ -1,5 +1,3 @@
 import './types.ts';
-import { h } from './h.ts';
-import { render } from './render.ts';
-
-export { h, render };
+export { h } from './h.ts';
+export { render } from './render.ts';
