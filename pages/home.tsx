@@ -1,6 +1,8 @@
-import { h } from '../jsx/index.ts';
+import { Status } from "https://deno.land/std/http/http_status.ts";
+import { ServerRequest } from "https://deno.land/std/http/server.ts";
+import { h, render } from '../jsx/index.ts';
 
-export default (
+const template = (
   <html>
     <head>
       <meta charset="utf-8" />
@@ -12,3 +14,8 @@ export default (
     </body>
   </html>
 );
+
+export default (req: ServerRequest) => req.respond({
+  status: Status.OK,
+  body: render(template),
+});
