@@ -1,4 +1,18 @@
-export const h = (nodeName: any, attributes: any, ...children: any) => {
+export const h = (type: string, props: any, ...children: any) => {
   children = [...children];
-  return { nodeName, attributes, children };
+  return {
+    type,
+    props,
+    children: children.map((child: object | string) =>
+      typeof child === "string"
+        ? {
+          type: "TEXT",
+          props: {
+            value: child,
+          },
+          children: [],
+        }
+        : child
+    ),
+  };
 };
