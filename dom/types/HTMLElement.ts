@@ -35,12 +35,12 @@ export class HTMLElement extends Element {
 
     const isSelfClosing = SELF_CLOSING_ELEMENTS.includes(this.tagName);
     const includedDocType: string = this.tagName === "html" ? DOC_TYPE : "";
-    const openingTag: string = `${includedDocType}<${this.tagName} ${attr}>`;
+    const classes: string = this.classList.length > 0 ? `class="${this.classList.value}"` : "";
+    const openingTag: string = `${includedDocType}<${this.tagName} ${attr} ${classes}>`;
     const closingTag: string = `</${this.tagName}>`;
 
-
     return isSelfClosing
-      ? `<${this.tagName} ${attr}/>`
+      ? `<${this.tagName} ${attr} ${classes}/>`
       : [openingTag, ...this.childNodes, closingTag].join("");
   }
 }

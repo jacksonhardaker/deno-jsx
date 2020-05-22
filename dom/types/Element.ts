@@ -1,9 +1,11 @@
-import { Node } from './Node.ts';
+import { Node } from "./Node.ts";
+import { DOMTokenList } from "./DOMTokenList.ts";
 
 export class Element extends Node {
   attributes: any = {
     length: 0,
   };
+  classList: DOMTokenList = new DOMTokenList();
 
   constructor() {
     super();

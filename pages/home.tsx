@@ -3,7 +3,7 @@ import { ServerRequest } from 'https://deno.land/std/http/server.ts';
 import { h, render } from '../jsx/index.ts';
 
 const template = (
-  <html>
+  <html className="one two three">
     <head>
       <meta charset="utf-8" />
       <title>SSR JSX without React on Deno</title>

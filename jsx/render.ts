@@ -1,14 +1,10 @@
 import { document, HTMLElement } from "../dom/document.ts";
+import { TEXT_NODE, VirtualNode } from "./types.ts";
 
-interface VirtualNode {
-  type: string;
-  props: object;
-  children: Array<VirtualNode>;
-}
+const protectedProps = ["className"];
 
 export function render(element: VirtualNode, container?: HTMLElement) {
-
-  if (element.type === 'TEXT') {
+  if (element.type === TEXT_NODE) {
     // @ts-ignore
     const textNode = document.createTextNode(element.props.value);
     container && container.appendChild(textNode);
@@ -17,8 +13,14 @@ export function render(element: VirtualNode, container?: HTMLElement) {
 
     const attr: any = element.props || {};
     Object.entries(attr).forEach(([key, value]) => {
-      parentNode.setAttribute(key, `${value}`);
+      if (!protectedProps.includes(key)) {
+        parentNode.setAttribute(key, `${value}`);
+      }
     });
+
+    if (attr.className) {
+      parentNode.classList.add(...attr.className.split(" "));
+    }
 
     element.children.forEach((childNode) => render(childNode, parentNode));
 
