@@ -1,3 +1,7 @@
+/**
+ * The DOMTokenList interface represents a set of space-separated tokens.
+ * See {@link https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList|DOMTokenList}
+ */
 export class DOMTokenList {
   public length: number = 0;
   public value: string = "";
